@@ -199,10 +199,8 @@
   <h1>Source code for ivy.functional.ivy.data_type</h1><div class="highlight"><pre>
 <span></span><span class="c1"># global</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">importlib</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
 <span class="kn">from</span> <span class="nn">numbers</span> <span class="kn">import</span> <span class="n">Number</span>
-
 
 <span class="c1"># local</span>
 <span class="kn">import</span> <span class="nn">ivy</span>
@@ -270,21 +268,6 @@
 <span class="sd">          smallest positive floating-point number with full precision.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">_cur_framework</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="broadcast_to"><a class="viewcode-back" href="../../../../functional/ivy/data_type/broadcast_to.html#ivy.functional.ivy.data_type.broadcast_to">[docs]</a><span class="k">def</span> <span class="nf">broadcast_to</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span>  <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span> <span class="n">shape</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="o">...</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-
-<span class="sd">     Broadcasts an array to a specified shape</span>
-
-<span class="sd">    :param x:  x (array) – array to broadcast.</span>
-<span class="sd">    :param shape: shape (Tuple[int, ...]) – array shape. Must be compatible with x (see Broadcasting). If \</span>
-<span class="sd">                  the array is incompatible with the specified shape, the function should raise an \</span>
-<span class="sd">                  exception.</span>
-<span class="sd">    :return: out (array) – an array having a specified shape. Must have the same data type as x.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">return</span>  <span class="n">_cur_framework</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">broadcast_to</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">shape</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="dtype"><a class="viewcode-back" href="../../../../functional/ivy/data_type/dtype.html#ivy.functional.ivy.data_type.dtype">[docs]</a><span class="k">def</span> <span class="nf">dtype</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span> <span class="n">as_str</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>\
@@ -362,67 +345,6 @@
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dtype_in</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)):</span>
         <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_indices_where</span><span class="p">(</span><span class="n">dtype_in</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">)))</span> <span class="k">else</span> <span class="kc">False</span>
     <span class="k">return</span> <span class="s1">&#39;float&#39;</span> <span class="ow">in</span> <span class="n">dtype_to_str</span><span class="p">(</span><span class="n">dtype_in</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="result_type"><a class="viewcode-back" href="../../../../functional/ivy/data_type/result_type.html#ivy.functional.ivy.data_type.result_type">[docs]</a><span class="k">def</span> <span class="nf">result_type</span><span class="p">(</span><span class="o">*</span><span class="n">arrays_and_dtypes</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns the dtype that results from applying the type promotion rules (see :ref:`type-promotion`) to the arguments.</span>
-<span class="sd">    .. note::</span>
-<span class="sd">       If provided mixed dtypes (e.g., integer and floating-point), the returned dtype will be implementation-specific.</span>
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    arrays_and_dtypes:</span>
-<span class="sd">        an arbitrary number of input arrays and/or dtypes.</span>
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    out:</span>
-<span class="sd">        the dtype resulting from an operation involving the input arrays and dtypes.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">_cur_framework</span><span class="p">(</span><span class="n">arrays_and_dtypes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">result_type</span><span class="p">(</span><span class="n">arrays_and_dtypes</span><span class="p">)</span></div>
-
-  
-<div class="viewcode-block" id="valid_dtype"><a class="viewcode-back" href="../../../../functional/ivy/data_type/valid_dtype.html#ivy.functional.ivy.data_type.valid_dtype">[docs]</a><span class="k">def</span> <span class="nf">valid_dtype</span><span class="p">(</span><span class="n">dtype_in</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">])</span>\
-        <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Determines whether the provided data type is support by the current framework.</span>
-
-<span class="sd">    :param dtype_in: The data type for which to check for backend support</span>
-<span class="sd">    :return: Boolean, whether or not the data-type string is supported.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">dtype_in</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">True</span>
-    <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">dtype_to_str</span><span class="p">(</span><span class="n">dtype_in</span><span class="p">)</span> <span class="ow">in</span> <span class="n">ivy</span><span class="o">.</span><span class="n">valid_dtype_strs</span></div>
-
-
-<div class="viewcode-block" id="invalid_dtype"><a class="viewcode-back" href="../../../../functional/ivy/data_type/invalid_dtype.html#ivy.functional.ivy.data_type.invalid_dtype">[docs]</a><span class="k">def</span> <span class="nf">invalid_dtype</span><span class="p">(</span><span class="n">dtype_in</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">])</span>\
-        <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Determines whether the provided data type is not support by the current framework.</span>
-
-<span class="sd">    :param dtype_in: The data type for which to check for backend non-support</span>
-<span class="sd">    :return: Boolean, whether the data-type string is un-supported.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">dtype_in</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">False</span>
-    <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">dtype_to_str</span><span class="p">(</span><span class="n">dtype_in</span><span class="p">)</span> <span class="ow">in</span> <span class="n">ivy</span><span class="o">.</span><span class="n">invalid_dtype_strs</span></div>
-
-
-<div class="viewcode-block" id="convert_dtype"><a class="viewcode-back" href="../../../../functional/ivy/data_type/convert_dtype.html#ivy.functional.ivy.data_type.convert_dtype">[docs]</a><span class="k">def</span> <span class="nf">convert_dtype</span><span class="p">(</span><span class="n">dtype_in</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">backend</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span>\
-        <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Converts a data type from one backend framework representation to another.</span>
-
-<span class="sd">    :param dtype_in: The data-type to convert, in the specified backend representation</span>
-<span class="sd">    :type dtype_in: data type</span>
-<span class="sd">    :param backend: The backend framework the dtype_in is represented in.</span>
-<span class="sd">    :type backend: str</span>
-<span class="sd">    :return: The data-type in the current ivy backend format</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">valid_backends</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;numpy&#39;</span><span class="p">,</span> <span class="s1">&#39;jax&#39;</span><span class="p">,</span> <span class="s1">&#39;tensorflow&#39;</span><span class="p">,</span> <span class="s1">&#39;torch&#39;</span><span class="p">,</span> <span class="s1">&#39;mxnet&#39;</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">backend</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_backends</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Invalid backend passed, must be one of </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">valid_backends</span><span class="p">))</span>
-    <span class="n">ivy_backend</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s1">&#39;ivy.functional.backends.</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">backend</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">dtype_from_str</span><span class="p">(</span><span class="n">ivy_backend</span><span class="o">.</span><span class="n">dtype_to_str</span><span class="p">(</span><span class="n">dtype_in</span><span class="p">))</span></div>
 </pre></div>
 
            </div>

@@ -811,15 +811,15 @@
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([[1.0, 2.0],[3.0, 4.0]])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.inv(x)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
-<span class="sd">    ivy.array([[-2.0, 1.0], [1.5, -0.5]])</span>
+<span class="sd">    ivy.array([[-2.0000002,1.0000001],[1.5000001,-0.50000006]])</span>
 
 <span class="sd">    Inverses of several matrices can be computed at once:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([[[1.0, 2.0],[3.0, 4.0]], [[1.0, 3.0], [3.0, 5.0]]])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.inv(x)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
-<span class="sd">    ivy.array([[[-2.0, 1.0], [1.5, -0.5]], [[-1.25, 0.75], [0.75, -0.25]]])</span>
-
+<span class="sd">    ivy.array([[[-2.0000002,1.0000001],[1.5000001,-0.50000006]],[[-1.2500001,0.75000006],[0.75000006,-0.25000003]]]</span>
+<span class="sd">     </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">_cur_framework</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></div>
 

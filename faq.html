@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="functional/ivy.html" />
-    <link rel="prev" title="Docstring Examples" href="contributing/5_docstring_examples.html" /> 
+    <link rel="next" title="Ivy" href="functional/ivy.html" />
+    <link rel="prev" title="Docstring Examples" href="contributing/7_docstring_examples.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -56,37 +56,14 @@
 <li class="toctree-l2"><a class="reference internal" href="#custom-operations">Custom Operations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-pipeline">The Pipeline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#state">State</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#transpiler">Transpiler</a></li>
 </ul>
 </li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Functional</span></p>
+<p class="caption" role="heading"><span class="caption-text">Functions</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="functional/ivy/activations.html">Activations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional/ivy/compilation.html">Compilation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional/ivy/constants.html">Constants</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional/ivy/creation.html">Creation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional/ivy/data_type.html">Data type</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional/ivy/device.html">Device</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional/ivy/elementwise.html">Elementwise</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional/ivy/general.html">General</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional/ivy/gradients.html">Gradients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional/ivy/image.html">Image</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional/ivy/layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional/ivy/linear_algebra.html">Linear algebra</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional/ivy/losses.html">Losses</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional/ivy/manipulation.html">Manipulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional/ivy/meta.html">Meta</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional/ivy/nest.html">Nest</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional/ivy/norms.html">Norms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional/ivy/random.html">Random</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional/ivy/searching.html">Searching</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional/ivy/set.html">Set</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional/ivy/sorting.html">Sorting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional/ivy/statistical.html">Statistical</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional/ivy/utility.html">Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functional/ivy.html">Ivy</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Stateful</span></p>
+<p class="caption" role="heading"><span class="caption-text">Classes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="stateful/activations.html">Activations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stateful/converters.html">Converters</a></li>
@@ -263,23 +240,14 @@ still return the values such that JAX is also supported. Ivy will remain fully f
 assume behavior similar to JAX. Our simple example on the <a class="reference external" href="https://github.com/unifyai/ivy">README</a> trains correctly for all back-ends, which passes
 everything explicitly in a functional manner.</p>
 </section>
-<section id="transpiler">
-<h2>Transpiler<a class="headerlink" href="#transpiler" title="Permalink to this headline"></a></h2>
-<p><a href="#id1"><span class="problematic" id="id2">**</span></a>Q: ** Does the authors need to code with Ivy to convert between different frameworks or can it convert let’s say
-PyTorch to Jax code directly?</p>
-<p><strong>A:</strong> The code conversion is a little more nuanced than that. Say if you have a pre-written pure PyTorch code, you can
-replace each PyTorch function with its equivalent function in Ivy using Ivy’s PyTorch frontend and run this PyTorch code using
-JAX. Once the transpiler interface is implemented, it will be possible to convert between frameworks without any knowledge
-of Ivy whatsoever.</p>
-</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="contributing/5_docstring_examples.html" class="btn btn-neutral float-left" title="Docstring Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="functional/ivy.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="contributing/7_docstring_examples.html" class="btn btn-neutral float-left" title="Docstring Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="functional/ivy.html" class="btn btn-neutral float-right" title="Ivy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

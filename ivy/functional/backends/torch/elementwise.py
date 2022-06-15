@@ -45,6 +45,8 @@ def _cast_for_binary_op(
 ) -> typing.Tuple[
     typing.Union[Tensor, int, float, bool], typing.Union[Tensor, int, float, bool]
 ]:
+    if isinstance(x1, (int, float, bool)):
+        return x1, x2
     x1_bits = ivy.functional.backends.torch.dtype_bits(x1.dtype)
     if isinstance(x2, (int, float, bool)):
         return x1, x2
@@ -71,6 +73,9 @@ def bitwise_and(
 ) -> torch.Tensor:
     x1, x2 = _cast_for_binary_op(x1, x2)
     return torch.bitwise_and(x1, x2, out=out)
+
+
+# bitwise_and.unsupported_dtypes = tuple([ivy.int8],)
 
 
 def ceil(x: torch.Tensor, *, out: Optional[torch.Tensor] = None) -> torch.Tensor:
@@ -160,10 +165,11 @@ def logical_not(x: torch.Tensor, *, out: Optional[torch.Tensor] = None) -> torch
 def divide(
     x1: torch.Tensor, x2: torch.Tensor, *, out: Optional[torch.Tensor] = None
 ) -> torch.Tensor:
+
     x1, x2 = _cast_for_binary_op(x1, x2)
     if not isinstance(x2, torch.Tensor):
-        return torch.divide(x1, x2)
-    return torch.divide(x1, x2, out=out)
+        return torch.div(x1, x2)
+    return torch.div(x1, x2, out=out)
 
 
 def greater(
@@ -210,6 +216,9 @@ def logical_or(
 
 def acosh(x: torch.Tensor, *, out: Optional[torch.Tensor] = None) -> torch.Tensor:
     return torch.acosh(x, out=out)
+
+
+acosh.unsupported_dtypes = [ivy.float16, ivy.uint16, ivy.uint32, ivy.uint64]
 
 
 def sin(x: torch.Tensor, *, out: Optional[torch.Tensor] = None) -> torch.Tensor:

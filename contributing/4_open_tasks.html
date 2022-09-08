@@ -21,7 +21,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="FAQ" href="../faq.html" />
+    <link rel="next" title="Ivy Applied Libraries Development Guide" href="5_applied_libraries.html" />
     <link rel="prev" title="Ivy Frontend Tests" href="../deep_dive/16_ivy_frontends_tests.html" /> 
 </head>
 
@@ -60,6 +60,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#ivy-api-extensions">Ivy API Extensions</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="5_applied_libraries.html">Ivy Applied Libraries Development Guide</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../deep_dive.html">Deep Dive</a></li>
@@ -368,7 +369,29 @@ too!</p>
 </section>
 <section id="ivy-api-extensions">
 <h2>Ivy API Extensions<a class="headerlink" href="#ivy-api-extensions" title="Permalink to this heading"></a></h2>
-<p>Coming soon!</p>
+<p>The goal of this task is to add functions to the existing Ivy API which
+would help with the implementation for many of the functions in the frontend.</p>
+<p>Your task is to implement these functions in Ivy, along with their Implementation
+in the respective backends which are <code class="code docutils literal notranslate"><span class="pre">Jax</span></code>, <code class="code docutils literal notranslate"><span class="pre">PyTorch</span></code>, <code class="code docutils literal notranslate"><span class="pre">TensorFlow</span></code>
+and <code class="code docutils literal notranslate"><span class="pre">NumPy</span></code>. You must also implement tests for these functions.</p>
+<p>A general workflow for these tasks would be:</p>
+<ol class="arabic simple">
+<li><p>Implement the functions in each of the backend files <code class="code docutils literal notranslate"><span class="pre">ivy/functional/backends/backend_name/extenstion.py</span></code>,
+sometimes as a composition if the respective backends do not behave in a similar way. You may also use submodule-specific
+helper functions to recreate the behaviour. Refer the <a class="reference external" href="https://lets-unify.ai/ivy/deep_dive/0_navigating_the_code.html#backend-api">Backend API Guide</a>
+on how this can be done.</p></li>
+<li><p>Implement the functions in <code class="code docutils literal notranslate"><span class="pre">ivy/functional/ivy/extenstion.py</span></code> simply defering to
+their backend-specific implementation. Refer the <a class="reference external" href="https://lets-unify.ai/ivy/deep_dive/0_navigating_the_code.html#ivy-api">Ivy API Guide</a>
+to get a clearer picture of how this must be done.</p></li>
+<li><p>Write tests for the function using the <a class="reference external" href="https://lets-unify.ai/ivy/deep_dive/14_ivy_tests.html">Ivy Tests</a> guide, and make sure they are passing.</p></li>
+</ol>
+<p>A few points to keep in mind while doing this:</p>
+<ol class="arabic simple">
+<li><p>Make sure all the positional arguments are postional-only and optional arguments are keywork-only.</p></li>
+<li><p>In case some tests require function-specific parameters, you can create composite hypothesis strategies using the <code class="code docutils literal notranslate"><span class="pre">draw</span></code> function
+in the hypothesis library.</p></li>
+</ol>
+<p>If you’re stuck on a function which requires complex compositions, feel free to reselect a function 🙂.</p>
 <p><strong>Round Up</strong></p>
 <p>This should have hopefully given you a good understanding of the basics for contributing.</p>
 <p>If you’re ever unsure of how best to proceed,
@@ -382,7 +405,7 @@ or reach out on <a class="reference external" href="https://discord.gg/ZVQdvbzNQ
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../deep_dive/16_ivy_frontends_tests.html" class="btn btn-neutral float-left" title="Ivy Frontend Tests" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../faq.html" class="btn btn-neutral float-right" title="FAQ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="5_applied_libraries.html" class="btn btn-neutral float-right" title="Ivy Applied Libraries Development Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
